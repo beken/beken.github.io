@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beyza Eken — Personal Website</title>
+  <meta name="description" content="Beyza Eken — Software Engineering • NLP & LLM Research • Teaching" />
+  <meta property="og:title" content="Beyza Eken — Personal Website" />
+  <meta property="og:description" content="Software Engineering, NLP, LLM research, and teaching." />
+  <meta property="og:type" content="website" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='58' font-size='52' text-anchor='middle' fill='%23fff' font-family='Arial, sans-serif'>BE</text></svg>">
+  <style>
+    :root{
+      --bg: #0b0c0f;
+      --card: #111319;
+      --text: #eaeef7;
+      --muted:#a5b1c8;
+      --brand:#6ea8fe;
+      --accent:#9b8cff;
+      --ring: 0 0 0 2px rgba(110,168,254,.5);
+    }
+    @media (prefers-color-scheme: light){
+      :root{--bg:#f7f8fb;--card:#ffffff;--text:#0d1223;--muted:#4a5771;--brand:#2457e6;--accent:#5b3df6}
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .container{max-width:1080px;margin:0 auto;padding:24px}
+    .nav{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:color-mix(in oklab, var(--bg) 85%, transparent);border-bottom:1px solid color-mix(in oklab,var(--text) 12%, transparent);z-index:10}
+    .navwrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+    .logo .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(120deg,var(--brand),var(--accent))}
+    .navlinks a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    .navlinks a:hover{color:var(--text)}
+
+    .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center;padding:48px 0}
+    .card{background:var(--card);border:1px solid color-mix(in oklab, var(--text) 10%, transparent);border-radius:18px;padding:24px}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);padding:6px 10px;border:1px solid color-mix(in oklab, var(--text) 15%, transparent);border-radius:999px}
+    h1{font-size:40px;line-height:1.1;margin:14px 0 6px}
+    .lead{color:var(--muted);max-width:60ch}
+    .cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+    .btn{appearance:none;border:0;border-radius:14px;padding:12px 16px;font-weight:700;cursor:pointer}
+    .btn-primary{background:linear-gradient(120deg,var(--brand),var(--accent));color:#fff}
+    .btn-ghost{background:transparent;color:var(--text);border:1px solid color-mix(in oklab,var(--text) 18%, transparent)}
+    .btn:focus{outline:none;box-shadow:var(--ring)}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .col-4{grid-column:span 4}
+    .col-6{grid-column:span 6}
+    .col-8{grid-column:span 8}
+    .col-12{grid-column:span 12}
+
+    .section{margin:34px 0}
+    .section h2{font-size:22px;margin:8px 0 14px}
+    .list{display:grid;gap:12px}
+    .item{padding:14px;border:1px solid color-mix(in oklab, var(--text) 12%, transparent);border-radius:14px;background:color-mix(in oklab,var(--card) 90%, transparent)}
+    .item h3{margin:0 0 4px;font-size:18px}
+    .item p{margin:0;color:var(--muted)}
+
+    .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+    .social{display:flex;gap:10px;margin-top:10px}
+    .iconbtn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid color-mix(in oklab, var(--text) 15%, transparent);background:transparent;color:var(--text);text-decoration:none}
+    .iconbtn:hover{transform:translateY(-1px)}
+
+    .footer{margin:36px 0 10px;color:var(--muted);text-align:center}
+
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .col-4,.col-6,.col-8,.col-12{grid-column:1/-1}
+      .twocol{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container navwrap">
+      <a class="logo" href="#top" aria-label="Home">
+        <span class="dot" aria-hidden="true"></span>
+        <strong>Beyza&nbsp;Eken</strong>
+      </a>
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="container" id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card">
+        <span class="badge">Software Engineering • NLP • LLM</span>
+        <h1>Hi, I'm <span style="background:linear-gradient(120deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">Beyza</span> —
+          Assistant Professor & Researcher</h1>
+        <p class="lead">I teach and research topics around Natural Language Processing, Large Language Models, and Software Engineering. I enjoy building practical systems for education and research, and mentoring students.
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#contact">Contact Me</a>
+          <a class="btn btn-ghost" href="#publications">See Publications</a>
+        </div>
+        <div class="social">
+          <a class="iconbtn" href="https://github.com/your-github" aria-label="GitHub">GH</a>
+          <a class="iconbtn" href="https://www.linkedin.com/in/your-linkedin" aria-label="LinkedIn">in</a>
+          <a class="iconbtn" href="https://scholar.google.com/citations?user=YOUR_ID" aria-label="Google Scholar">G</a>
+          <a class="iconbtn" href="mailto:your.name@university.edu" aria-label="Email">@</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2 style="margin-top:0">At a glance</h2>
+        <ul class="list" style="margin:0;padding-left:18px">
+          <li>Assistant Professor, Software Engineering</li>
+          <li>Research: LLM evaluation & prompting, semantic coupling, automatic grading</li>
+          <li>Teaching: Web Programming, Programming Languages, NLP (two‑term track)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2>About</h2>
+      <div class="twocol">
+        <div class="card">
+          <p class="lead">My work bridges research and teaching: building datasets and evaluation pipelines for LLMs, and designing hands‑on coursework in software engineering. I value clarity, reproducibility, and student growth.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Highlights</h3>
+          <ul style="margin:0;padding-left:18px">
+            <li>Leading projects on LLM‑based grading and semantic coupling</li>
+            <li>Advising undergraduate research (datasets, evaluations, tooling)</li>
+            <li>Community work: organizing student volunteers and events</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" class="section">
+      <h2>Selected Publications</h2>
+      <div class="grid">
+        <div class="col-12 item">
+          <h3>Title of Paper One</h3>
+          <p>Authors. <em>Venue, Year</em>. Short one‑line summary of contribution.</p>
+        </div>
+        <div class="col-12 item">
+          <h3>Title of Paper Two</h3>
+          <p>Authors. <em>Venue, Year</em>. Short one‑line summary of contribution.</p>
+        </div>
+        <div class="col-12 item">
+          <h3>Title of Paper Three</h3>
+          <p>Authors. <em>Venue, Year</em>. Short one‑line summary of contribution.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="grid">
+        <div class="col-6 item">
+          <h3>LLM‑based Automatic Grading</h3>
+          <p>Prompt strategies, rubric design, and human‑LLM agreement analysis on real student answers.</p>
+        </div>
+        <div class="col-6 item">
+          <h3>Semantic Coupling in Code</h3>
+          <p>Embedding‑powered measures for coupling and change prediction in software systems.</p>
+        </div>
+        <div class="col-6 item">
+          <h3>CineClub (Teaching App)</h3>
+          <p>ASP.NET Core MVC + EF Core app for managing movies, genres, and reviews in class.</p>
+        </div>
+        <div class="col-6 item">
+          <h3>Arabic LLM Adaptation</h3>
+          <p>Parameter‑efficient fine‑tuning with retrieval‑augmented prompting for low‑resource settings.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>Email: <a href="mailto:your.name@university.edu">your.name@university.edu</a></p>
+        <p>GitHub: <a href="https://github.com/your-github">github.com/your-github</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/your-linkedin">linkedin.com/in/your-linkedin</a></p>
+        <p>Google Scholar: <a href="https://scholar.google.com/citations?user=YOUR_ID">scholar profile</a></p>
+      </div>
+    </section>
+
+    <p class="footer">© <span id="y"></span> Beyza Eken — Built for GitHub Pages</p>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
