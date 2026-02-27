@@ -303,9 +303,8 @@
 
       const calendarEl = document.getElementById("calendar");
 
-      // ✅ IMPORTANT FIX: correct plugin names for the global CDN build
       const calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [dayGridPlugin, interactionPlugin],
+        plugins: [FullCalendar.dayGridPlugin, FullCalendar.interactionPlugin],
         initialView: "dayGridMonth",
         firstDay: 1,
         height: "auto",
