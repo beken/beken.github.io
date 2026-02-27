@@ -10,6 +10,7 @@
   <meta property="og:type" content="website" />
   <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='58' font-size='52' text-anchor='middle' fill='%23fff' font-family='Arial, sans-serif'>BE</text></svg>">
+
   <style>
     :root{
       --bg: #0b0c0f;
@@ -72,8 +73,51 @@
       .col-4,.col-6,.col-8,.col-12{grid-column:1/-1}
       .twocol{grid-template-columns:1fr}
     }
+
+    /* ===== FullCalendar theme tweaks to match your site ===== */
+    #fc-wrap {
+      background: var(--card);
+      border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    /* FullCalendar uses its own CSS vars; we lightly blend */
+    .fc .fc-toolbar-title { font-size: 18px; }
+    .fc .fc-button { border-radius: 12px; }
+    .fc .fc-scrollgrid, .fc .fc-scrollgrid-section > td { border-color: color-mix(in oklab, var(--text) 12%, transparent); }
+    .fc a { color: inherit; text-decoration: none; }
+    .fc .fc-daygrid-day-number { color: var(--muted); }
+    .fc .fc-col-header-cell-cushion { color: var(--muted); font-weight: 600; }
+
+    /* custom popup */
+    .my-popup {
+      position: fixed;
+      inset: auto 20px 20px auto;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+      border-radius: 14px;
+      padding: 12px 14px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.28);
+      width: min(460px, calc(100vw - 40px));
+      z-index: 9999;
+      display: none;
+    }
+    .my-popup h3 { margin: 0 0 6px; font-size: 16px; }
+    .my-popup .meta { color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .my-popup .close { float: right; cursor: pointer; color: var(--muted); user-select:none; }
+    .my-popup .close:hover { color: var(--text); }
   </style>
-</head>  
+
+  <!-- ===== FullCalendar + ICS parser (free CDNs) ===== -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.15/index.global.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
+</head>
+
 <body>
   <!-- NAV -->
   <div class="nav">
@@ -96,85 +140,50 @@
     <!-- HERO -->
     <section class="hero">
       <div class="card">
-        <!-- <span class="badge">Software Engineering • NLP • LLM</span> -->
         <h1>Hi, I'm <span style="background:linear-gradient(120deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">Beyza</span></h1>
         <p class="lead">
           I am an Assistant Professor in Software Engineering. My research focuses on Empirical Software Engineering, Natural Language Processing, and Large Language Models. I teach various courses including NLP, LLM, Software Project Management, Web Programming, and Programming Languages.
         </p>
-        <!--
-        <div class="cta">
-          <a class="btn btn-primary" href="#contact">Contact Me</a>
-          <a class="btn btn-ghost" href="#publications">See Publications</a>
-        </div>
-        -->
+
         <div class="social">
-          <!-- <a class="iconbtn" href="" aria-label="GitHub">GH</a> -->
           <a class="iconbtn" href="https://www.linkedin.com/in/beyzaeken/" aria-label="LinkedIn">in</a>
           <a class="iconbtn" href="https://scholar.google.com/citations?user=C4efKhMAAAAJ&hl=en" aria-label="Google Scholar">G</a>
           <a class="iconbtn" href="mailto:beken@sakarya.edu.tr" aria-label="Email">@</a>
           <a class="iconbtn" href="beken@sakarya.edu.tr" aria-label="University">U</a>
         </div>
       </div>
-      <!--
-      <div class="card">
-        <h2 style="margin-top:0">At a glance</h2>
-        <ul class="list" style="margin:0;padding-left:18px">
-          <li>Assistant Professor, Software Engineering</li>
-          <li>Research: Empirical Software Engineering, NLP & LLM</li>
-          <li>Teaching: NLP, LLM, Software Project Management, Web Programming, Programming Languages</li>
-        </ul>
-      </div>
-      -->
     </section>
-     
-    <!-- ABOUT -->
-    <!--
-    <section id="about" class="section">
-      <h2>About</h2>
-      <div class="twocol">
-        <div class="card">
-          
-        </div>
-        <div class="card">
-          <h3 style="margin-top:0">Highlights</h3>
-          <ul style="margin:0;padding-left:18px">
 
-          </ul>
-        </div>
-      </div>
-    </section>
-    -->
-    
     <!-- PUBLICATIONS -->
     <section id="publications" class="section">
       <h2>Recent Publications</h2>
       <div class="grid">
         <div class="col-12 item">
           <h3>A Multivocal Review of MLOps Practices, Challenges and Open Issues</h3>
-          <p>B. Eken, S. Pallewatta, N. Tran, A. Tosun, M. A. Babar. 
+          <p>B. Eken, S. Pallewatta, N. Tran, A. Tosun, M. A. Babar.
           <em>ACM Computing Surveys, 2025</em>. </p>
           <p>Provides a comprehensive multivocal synthesis of 198 academic and grey sources to unify fragmented MLOps knowledge, outlining its key practices, challenges, and solutions.</p>
         </div>
         <div class="col-12 item">
-        <h3>Tratto: A Neuro-Symbolic Approach to Deriving Axiomatic Test Oracles</h3>
-        <p>D. Molinelli, A. Martin-Lopez, E. Zackrone, B. Eken, M. D. Ernst, M. Pezzè. 
-        <em>Proceedings of the ACM on Software Engineering (ISSTA), 2025.</em></p>
-        <p>Introduces a neuro-symbolic framework for automatically deriving formal test oracles from natural language requirements.</p>
-      </div>
-      
-      <div class="col-12 item">
-        <h3>Classification and Analysis of Employee Feedback with Deep Learning Algorithms</h3>
-        <p>G. Yiğidefe, S. Ç. Kaman, B. Eken. 
-        <em>Sakarya University Journal of Computer and Information Sciences, 2025.</em></p>
-        <p>Presents a deep learning-based approach for classifying and interpreting employee feedback to improve organizational insights.</p>
-      </div>
-      
-      <div class="col-12 item">
-        <h3>Leveraging Semantic Coupling Through Class Name Embeddings for Software Change Prediction</h3>
-        <p>B. Eken, N. B. Oğur. 
-        <em>International Conference on Artificial Intelligence, Metaverse and Cybersecurity, 2024.</em></p>
-        <p>Proposes a semantic coupling metric using class name embeddings to enhance change prediction in software systems.</p>
-      </div>
+          <h3>Tratto: A Neuro-Symbolic Approach to Deriving Axiomatic Test Oracles</h3>
+          <p>D. Molinelli, A. Martin-Lopez, E. Zackrone, B. Eken, M. D. Ernst, M. Pezzè.
+          <em>Proceedings of the ACM on Software Engineering (ISSTA), 2025.</em></p>
+          <p>Introduces a neuro-symbolic framework for automatically deriving formal test oracles from natural language requirements.</p>
+        </div>
+
+        <div class="col-12 item">
+          <h3>Classification and Analysis of Employee Feedback with Deep Learning Algorithms</h3>
+          <p>G. Yiğidefe, S. Ç. Kaman, B. Eken.
+          <em>Sakarya University Journal of Computer and Information Sciences, 2025.</em></p>
+          <p>Presents a deep learning-based approach for classifying and interpreting employee feedback to improve organizational insights.</p>
+        </div>
+
+        <div class="col-12 item">
+          <h3>Leveraging Semantic Coupling Through Class Name Embeddings for Software Change Prediction</h3>
+          <p>B. Eken, N. B. Oğur.
+          <em>International Conference on Artificial Intelligence, Metaverse and Cybersecurity, 2024.</em></p>
+          <p>Proposes a semantic coupling metric using class name embeddings to enhance change prediction in software systems.</p>
+        </div>
       </div>
     </section>
 
@@ -190,7 +199,7 @@
         <div class="col-6 item">
           <h3>LLM-generated Code Detection and LLM Fingerprint Analysis</h3>
           <p>Investigating how stylistic and semantic patterns can reveal the authorship of AI-generated source code, aiming to detect LLM-paraphrased code and identify the responsible model through embedding-based and stylometric features.</p>
-          <p> Advised Master’s Thesis </p>
+          <p>Advised Master’s Thesis</p>
         </div>
       </div>
     </section>
@@ -199,57 +208,164 @@
     <section id="student-projects" class="section">
       <h2>Advised Undergrad Projects</h2>
       <div class="grid">
-    
         <div class="col-6 item">
           <h3>AI-based Code Similarity Detection</h3>
           <p>Undergraduate capstone project focusing on code similarity analysis using abstract syntax trees and semantic similarity measurements.</p>
-          <p><strong>Funding:</strong> TÜBİTAK 2209-A Program (Student PI)<br>
+          <p><strong>Funding:</strong> TÜBİTAK 2209-A Program (Student PI)</p>
         </div>
-    
+
         <div class="col-6 item">
           <h3>Temporal and Context-Aware Sentiment Analysis of Manipulative News Headlines</h3>
           <p>Undergraduate project analyzing manipulative news headlines using NLP techniques and transformer-based sentiment models.</p>
-          <p><strong>Funding:</strong> TÜBİTAK 2209-A Program (Student PI)<br>
+          <p><strong>Funding:</strong> TÜBİTAK 2209-A Program (Student PI)</p>
         </div>
-    
+
         <div class="col-6 item">
           <h3>AI-Based Decision Support System for Executives: Improving Decision-Making via Personalized Analytics and Feedback</h3>
           <p>Undergraduate project designing a personalized decision support system that leverages LLM-based analytics and feedback mechanisms to optimize managerial decision processes.</p>
-          <p><strong>Funding:</strong> TÜBİTAK 2209-A Program (Student PI)<br>
+          <p><strong>Funding:</strong> TÜBİTAK 2209-A Program (Student PI)</p>
         </div>
 
         <div class="col-6 item">
           <h3>Aspect-Based Sentiment Analysis</h3>
           <p>Undergraduate capstone project focusing on fine-grained aspect-level sentiment analysis using both traditional NLP and transformer-based models for aspect extraction and opinion term classification.</p>
-
         </div>
-    </div>
-  </section>
-
-  <section id="calendar" class="section">
-      <div class="grid">
-    <iframe src="https://calendar.google.com/calendar/embed?src=beken%40sakarya.edu.tr&ctz=Europe%2FIstanbul" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
- </div>
-  </section>
-
-    <!-- CONTACT -->
-    <!--
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <div class="card">
-        <p>Email: <a href="mailto:beken@sakarya.edu.tr">beken@sakarya.edu.tr</a></p>
-        <p>University web-site: <a href="https://beken.sakarya.edu.tr/">beken.sakarya.edu.tr</a></p>
       </div>
     </section>
-    -->
-    
-    <p class="footer"><span id="y"></span> </p>
+
+    <!-- CALENDAR (FullCalendar, no emails shown) -->
+    <section id="office-hours" class="section">
+      <h2>Office Hours</h2>
+
+      <div id="fc-wrap">
+        <div id="calendar"></div>
+      </div>
+    </section>
+
+    <!-- Popup (custom; we NEVER print emails) -->
+    <div id="popup" class="my-popup" role="dialog" aria-modal="false" aria-label="Event details">
+      <span class="close" id="popupClose">✕</span>
+      <h3 id="pTitle"></h3>
+      <div class="meta" id="pMeta"></div>
+    </div>
+
+    <p class="footer"><span id="y"></span></p>
   </main>
-  
-  <!--
+
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // ====== CONFIG ======
+    // Option A (recommended): Put calendar.ics in your repo (same folder as index.html)
+    // const ICS_URL = "./calendar.ics";
+
+    // Option B: Use your PUBLIC Google Calendar ICS link here (may hit CORS in some setups)
+    // const ICS_URL = "PASTE_YOUR_PUBLIC_ICS_URL_HERE";
+
+    // If you use Option B and CORS blocks it, set a proxy prefix:
+    // Example proxy (may have limits): https://cors.isomorphic-git.org/
+    const CORS_PROXY = ""; // e.g. "https://cors.isomorphic-git.org/"
+    const ICS_URL = "https://calendar.google.com/calendar/ical/beken%40sakarya.edu.tr/public/basic.ics"; // <-- change this if you want Option B
+
+    // ====== POPUP ======
+    function showPopup(title, metaHtml) {
+      const popup = document.getElementById("popup");
+      document.getElementById("pTitle").textContent = title || "(No title)";
+      document.getElementById("pMeta").innerHTML = metaHtml || "";
+      popup.style.display = "block";
+    }
+    function hidePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+    document.getElementById("popupClose").addEventListener("click", hidePopup);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") hidePopup(); });
+
+    // ====== ICS → Events ======
+    async function fetchIcsText(url) {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) throw new Error("ICS fetch failed: " + res.status);
+      return await res.text();
+    }
+
+    function icsToEvents(icsText) {
+      const jcalData = ICAL.parse(icsText);
+      const comp = new ICAL.Component(jcalData);
+      const vevents = comp.getAllSubcomponents("vevent");
+
+      return vevents.map(v => {
+        const e = new ICAL.Event(v);
+
+        // We intentionally only expose safe fields
+        const title = e.summary || "";
+        const start = e.startDate ? e.startDate.toJSDate() : null;
+        const end = e.endDate ? e.endDate.toJSDate() : null;
+        const location = e.location || "";
+
+        // You can also drop location if you want:
+        return {
+          title,
+          start,
+          end,
+          extendedProps: { location }
+        };
+      }).filter(ev => ev.start);
+    }
+
+    // ====== Init ======
+    document.addEventListener("DOMContentLoaded", async function () {
+      // year in footer
+      document.getElementById('y').textContent = new Date().getFullYear();
+
+      const calendarEl = document.getElementById("calendar");
+
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        plugins: [FullCalendar.DayGrid, FullCalendar.Interaction],
+        initialView: "dayGridMonth",
+        firstDay: 1, // Monday
+        height: "auto",
+        headerToolbar: {
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,dayGridWeek"
+        },
+        eventClick: function(info) {
+          // We NEVER print guests/attendees/emails (not even if present in ICS)
+          const ev = info.event;
+
+          const start = ev.start ? ev.start.toLocaleString() : "";
+          const end = ev.end ? ev.end.toLocaleString() : "";
+          const loc = ev.extendedProps.location ? `<br><b>Location:</b> ${escapeHtml(ev.extendedProps.location)}` : "";
+
+          const meta =
+            `<b>Start:</b> ${escapeHtml(start)}` +
+            (end ? `<br><b>End:</b> ${escapeHtml(end)}` : "") +
+            loc;
+
+          showPopup(ev.title, meta);
+          info.jsEvent.preventDefault();
+        }
+      });
+
+      calendar.render();
+
+      try {
+        const url = (CORS_PROXY ? (CORS_PROXY + ICS_URL) : ICS_URL);
+        const icsText = await fetchIcsText(url);
+        const events = icsToEvents(icsText);
+        calendar.addEventSource(events);
+      } catch (err) {
+        console.error(err);
+        showPopup("Calendar error", "ICS okunamadı. (Public link/CORS ya da dosya yolu problemi olabilir.)");
+      }
+    });
+
+    // helper: avoid HTML injection in popup
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
   </script>
-  -->
 </body>
 </html>
