@@ -1,371 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Beyza Eken — Personal Website</title>
-  <!-- <meta name="description" content="Beyza Eken — Software Engineering • NLP & LLM Research • Teaching" /> -->
-  <meta property="og:title" content="Beyza Eken — Personal Website" />
-  <!-- <meta property="og:description" content="Software Engineering, NLP, LLM research, and teaching." /> -->
-  <meta property="og:type" content="website" />
-  <meta name="color-scheme" content="light dark" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='58' font-size='52' text-anchor='middle' fill='%23fff' font-family='Arial, sans-serif'>BE</text></svg>">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Beyza Eken — Personal Website</title>
 
-  <style>
-    :root{
-      --bg: #0b0c0f;
-      --card: #111319;
-      --text: #eaeef7;
-      --muted:#a5b1c8;
-      --brand:#6ea8fe;
-      --accent:#9b8cff;
-      --ring: 0 0 0 2px rgba(110,168,254,.5);
-    }
-    @media (prefers-color-scheme: light){
-      :root{--bg:#f7f8fb;--card:#ffffff;--text:#0d1223;--muted:#4a5771;--brand:#2457e6;--accent:#5b3df6}
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text)}
-    .container{max-width:1080px;margin:0 auto;padding:24px}
-    .nav{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:color-mix(in oklab, var(--bg) 85%, transparent);border-bottom:1px solid color-mix(in oklab,var(--text) 12%, transparent);z-index:10}
-    .navwrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
-    .logo .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(120deg,var(--brand),var(--accent))}
-    .navlinks a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-    .navlinks a:hover{color:var(--text)}
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='58' font-size='52' text-anchor='middle' fill='%23fff'>BE</text></svg>">
 
-    .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center;padding:48px 0}
-    .card{background:var(--card);border:1px solid color-mix(in oklab, var(--text) 10%, transparent);border-radius:18px;padding:24px}
-    .badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);padding:6px 10px;border:1px solid color-mix(in oklab, var(--text) 15%, transparent);border-radius:999px}
-    h1{font-size:40px;line-height:1.1;margin:14px 0 6px}
-    .lead{color:var(--muted);max-width:60ch}
-    .cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
-    .btn{appearance:none;border:0;border-radius:14px;padding:12px 16px;font-weight:700;cursor:pointer}
-    .btn-primary{background:linear-gradient(120deg,var(--brand),var(--accent));color:#fff}
-    .btn-ghost{background:transparent;color:var(--text);border:1px solid color-mix(in oklab,var(--text) 18%, transparent)}
-    .btn:focus{outline:none;box-shadow:var(--ring)}
+<style>
+:root{
+--bg:#0b0c0f;
+--card:#111319;
+--text:#eaeef7;
+--muted:#a5b1c8;
+--brand:#6ea8fe;
+--accent:#9b8cff;
+}
+@media (prefers-color-scheme: light){
+:root{--bg:#f7f8fb;--card:#fff;--text:#0d1223;--muted:#4a5771;}
+}
+body{margin:0;font:16px system-ui;background:var(--bg);color:var(--text)}
+.container{max-width:1080px;margin:auto;padding:24px}
+.card{background:var(--card);border-radius:16px;padding:24px}
+.section{margin:34px 0}
+h1{font-size:40px;margin:0 0 10px}
+h2{font-size:22px}
+a{color:var(--brand);text-decoration:none}
 
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-    .col-4{grid-column:span 4}
-    .col-6{grid-column:span 6}
-    .col-8{grid-column:span 8}
-    .col-12{grid-column:span 12}
+/* calendar */
+#calendar{margin-top:10px}
+.fc .fc-toolbar-title{font-size:18px}
+.fc a{color:inherit;text-decoration:none}
 
-    .section{margin:34px 0}
-    .section h2{font-size:22px;margin:8px 0 14px}
-    .list{display:grid;gap:12px}
-    .item{padding:14px;border:1px solid color-mix(in oklab, var(--text) 12%, transparent);border-radius:14px;background:color-mix(in oklab,var(--card) 90%, transparent)}
-    .item h3{margin:0 0 4px;font-size:18px}
-    .item p{margin:0;color:var(--muted)}
+/* popup */
+.my-popup{
+position:fixed;
+right:20px;
+bottom:20px;
+background:var(--card);
+color:var(--text);
+padding:12px 14px;
+border-radius:14px;
+box-shadow:0 10px 40px rgba(0,0,0,.3);
+width:min(420px,calc(100vw - 40px));
+display:none;
+z-index:9999;
+}
+.my-popup .close{float:right;cursor:pointer;color:var(--muted);}
+.my-popup .meta{font-size:13px;color:var(--muted);}
+</style>
 
-    .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+<!-- FullCalendar -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.15/index.global.min.js"></script>
 
-    .social{display:flex;gap:10px;margin-top:10px}
-    .iconbtn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid color-mix(in oklab, var(--text) 15%, transparent);background:transparent;color:var(--text);text-decoration:none}
-    .iconbtn:hover{transform:translateY(-1px)}
+<!-- ICS parser -->
+<script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
 
-    .footer{margin:36px 0 10px;color:var(--muted);text-align:center}
-
-    @media (max-width:880px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .col-4,.col-6,.col-8,.col-12{grid-column:1/-1}
-      .twocol{grid-template-columns:1fr}
-    }
-
-    /* ===== FullCalendar theme tweaks to match your site ===== */
-    #fc-wrap {
-      background: var(--card);
-      border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-      border-radius: 18px;
-      padding: 14px;
-    }
-    /* FullCalendar uses its own CSS vars; we lightly blend */
-    .fc .fc-toolbar-title { font-size: 18px; }
-    .fc .fc-button { border-radius: 12px; }
-    .fc .fc-scrollgrid, .fc .fc-scrollgrid-section > td { border-color: color-mix(in oklab, var(--text) 12%, transparent); }
-    .fc a { color: inherit; text-decoration: none; }
-    .fc .fc-daygrid-day-number { color: var(--muted); }
-    .fc .fc-col-header-cell-cushion { color: var(--muted); font-weight: 600; }
-
-    /* custom popup */
-    .my-popup {
-      position: fixed;
-      inset: auto 20px 20px auto;
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
-      border-radius: 14px;
-      padding: 12px 14px;
-      box-shadow: 0 18px 50px rgba(0,0,0,.28);
-      width: min(460px, calc(100vw - 40px));
-      z-index: 9999;
-      display: none;
-    }
-    .my-popup h3 { margin: 0 0 6px; font-size: 16px; }
-    .my-popup .meta { color: var(--muted); font-size: 13px; line-height: 1.45; }
-    .my-popup .close { float: right; cursor: pointer; color: var(--muted); user-select:none; }
-    .my-popup .close:hover { color: var(--text); }
-  </style>
-
-  <!-- ===== FullCalendar + ICS parser (free CDNs) ===== -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.15/index.global.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
 </head>
 
 <body>
-  <!-- NAV -->
-  <div class="nav">
-    <div class="container navwrap">
-      <a class="logo" href="#top" aria-label="Home">
-        <span class="dot" aria-hidden="true"></span>
-        <strong>Beyza&nbsp;Eken</strong>
-      </a>
-      <nav class="navlinks" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#publications">Publications</a>
-        <a href="#projects">Projects</a>
-        <a href="#office-hours">Office Hours</a>
-        <!-- <a href="#contact">Contact</a> -->
-      </nav>
-    </div>
-  </div>
 
-  <main class="container" id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="card">
-        <h1>Hi, I'm <span style="background:linear-gradient(120deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">Beyza</span></h1>
-        <p class="lead">
-          I am an Assistant Professor in Software Engineering. My research focuses on Empirical Software Engineering, Natural Language Processing, and Large Language Models. I teach various courses including NLP, LLM, Software Project Management, Web Programming, and Programming Languages.
-        </p>
+<main class="container">
 
-        <div class="social">
-          <a class="iconbtn" href="https://www.linkedin.com/in/beyzaeken/" aria-label="LinkedIn">in</a>
-          <a class="iconbtn" href="https://scholar.google.com/citations?user=C4efKhMAAAAJ&hl=en" aria-label="Google Scholar">G</a>
-          <a class="iconbtn" href="mailto:beken@sakarya.edu.tr" aria-label="Email">@</a>
-          <a class="iconbtn" href="beken@sakarya.edu.tr" aria-label="University">U</a>
-        </div>
-      </div>
-    </section>
+<section class="section">
+<div class="card">
+<h1>Hi, I'm Beyza</h1>
+<p>
+Assistant Professor in Software Engineering.  
+Research: Empirical Software Engineering, NLP, LLMs.
+</p>
+</div>
+</section>
 
-    <!-- PUBLICATIONS -->
-    <section id="publications" class="section">
-      <h2>Recent Publications</h2>
-      <div class="grid">
-        <div class="col-12 item">
-          <h3>A Multivocal Review of MLOps Practices, Challenges and Open Issues</h3>
-          <p>B. Eken, S. Pallewatta, N. Tran, A. Tosun, M. A. Babar.
-          <em>ACM Computing Surveys, 2025</em>. </p>
-          <p>Provides a comprehensive multivocal synthesis of 198 academic and grey sources to unify fragmented MLOps knowledge, outlining its key practices, challenges, and solutions.</p>
-        </div>
-        <div class="col-12 item">
-          <h3>Tratto: A Neuro-Symbolic Approach to Deriving Axiomatic Test Oracles</h3>
-          <p>D. Molinelli, A. Martin-Lopez, E. Zackrone, B. Eken, M. D. Ernst, M. Pezzè.
-          <em>Proceedings of the ACM on Software Engineering (ISSTA), 2025.</em></p>
-          <p>Introduces a neuro-symbolic framework for automatically deriving formal test oracles from natural language requirements.</p>
-        </div>
+<section class="section" id="office-hours">
+<h2>Office Hours</h2>
+<div class="card">
+<div id="calendar"></div>
+</div>
+</section>
 
-        <div class="col-12 item">
-          <h3>Classification and Analysis of Employee Feedback with Deep Learning Algorithms</h3>
-          <p>G. Yiğidefe, S. Ç. Kaman, B. Eken.
-          <em>Sakarya University Journal of Computer and Information Sciences, 2025.</em></p>
-          <p>Presents a deep learning-based approach for classifying and interpreting employee feedback to improve organizational insights.</p>
-        </div>
+</main>
 
-        <div class="col-12 item">
-          <h3>Leveraging Semantic Coupling Through Class Name Embeddings for Software Change Prediction</h3>
-          <p>B. Eken, N. B. Oğur.
-          <em>International Conference on Artificial Intelligence, Metaverse and Cybersecurity, 2024.</em></p>
-          <p>Proposes a semantic coupling metric using class name embeddings to enhance change prediction in software systems.</p>
-        </div>
-      </div>
-    </section>
+<!-- popup -->
+<div id="popup" class="my-popup">
+<span class="close" id="popupClose">✕</span>
+<h3 id="pTitle"></h3>
+<div class="meta" id="pMeta"></div>
+</div>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <div class="grid">
-        <div class="col-6 item">
-          <h3>Automated Short Answer Grading with LLMs</h3>
-          <p>Developing a large language model–driven evaluation pipeline to automatically grade open-ended student answers in software engineering and computer science courses, focusing on prompt strategies, reasoning quality, and rubric alignment.</p>
-          <p>PI: Beyza Eken - <em>Funded by TÜBİTAK 1002 Program.</em></p>
-        </div>
-        <div class="col-6 item">
-          <h3>LLM-generated Code Detection and LLM Fingerprint Analysis</h3>
-          <p>Investigating how stylistic and semantic patterns can reveal the authorship of AI-generated source code, aiming to detect LLM-paraphrased code and identify the responsible model through embedding-based and stylometric features.</p>
-          <p>Advised Master’s Thesis</p>
-        </div>
-      </div>
-    </section>
+<script>
+/* =========================
+   CONFIG
+========================= */
 
-    <!-- FUNDED STUDENT PROJECTS -->
-    <section id="student-projects" class="section">
-      <h2>Advised Undergrad Projects</h2>
-      <div class="grid">
-        <div class="col-6 item">
-          <h3>AI-based Code Similarity Detection</h3>
-          <p>Undergraduate capstone project focusing on code similarity analysis using abstract syntax trees and semantic similarity measurements.</p>
-          <p><strong>Funding:</strong> TÜBİTAK 2209-A Program (Student PI)</p>
-        </div>
+// Google Calendar → Public iCal link
+const ICS_URL = "https://calendar.google.com/calendar/ical/beken%40sakarya.edu.tr/public/basic.ics";
 
-        <div class="col-6 item">
-          <h3>Temporal and Context-Aware Sentiment Analysis of Manipulative News Headlines</h3>
-          <p>Undergraduate project analyzing manipulative news headlines using NLP techniques and transformer-based sentiment models.</p>
-          <p><strong>Funding:</strong> TÜBİTAK 2209-A Program (Student PI)</p>
-        </div>
+/* =========================
+   Popup
+========================= */
 
-        <div class="col-6 item">
-          <h3>AI-Based Decision Support System for Executives: Improving Decision-Making via Personalized Analytics and Feedback</h3>
-          <p>Undergraduate project designing a personalized decision support system that leverages LLM-based analytics and feedback mechanisms to optimize managerial decision processes.</p>
-          <p><strong>Funding:</strong> TÜBİTAK 2209-A Program (Student PI)</p>
-        </div>
+function showPopup(title, html){
+document.getElementById("pTitle").textContent = title;
+document.getElementById("pMeta").innerHTML = html;
+document.getElementById("popup").style.display="block";
+}
+document.getElementById("popupClose").onclick=()=>{
+document.getElementById("popup").style.display="none";
+};
 
-        <div class="col-6 item">
-          <h3>Aspect-Based Sentiment Analysis</h3>
-          <p>Undergraduate capstone project focusing on fine-grained aspect-level sentiment analysis using both traditional NLP and transformer-based models for aspect extraction and opinion term classification.</p>
-        </div>
-      </div>
-    </section>
+/* =========================
+   ICS → Events
+========================= */
 
-    <!-- CALENDAR (FullCalendar, no emails shown) -->
-    <section id="office-hours" class="section">
-      <h2>Office Hours</h2>
+async function fetchEvents(){
+const res = await fetch(ICS_URL,{cache:"no-store"});
+const txt = await res.text();
 
-      <div id="fc-wrap">
-        <div id="calendar"></div>
-      </div>
-    </section>
+const jcal = ICAL.parse(txt);
+const comp = new ICAL.Component(jcal);
+const events = comp.getAllSubcomponents("vevent");
 
-    <!-- Popup (custom; we NEVER print emails) -->
-    <div id="popup" class="my-popup" role="dialog" aria-modal="false" aria-label="Event details">
-      <span class="close" id="popupClose">✕</span>
-      <h3 id="pTitle"></h3>
-      <div class="meta" id="pMeta"></div>
-    </div>
+return events.map(v=>{
+const e = new ICAL.Event(v);
+return {
+title:e.summary || "",
+start:e.startDate?.toJSDate(),
+end:e.endDate?.toJSDate(),
+extendedProps:{
+location:e.location || ""
+}
+};
+}).filter(e=>e.start);
+}
 
-    <p class="footer"><span id="y"></span></p>
-  </main>
+/* =========================
+   Calendar Init
+========================= */
 
-  <script>
-    // ====== CONFIG ======
-    // Option A (recommended): Put calendar.ics in your repo (same folder as index.html)
-    // const ICS_URL = "./calendar.ics";
+document.addEventListener("DOMContentLoaded", async ()=>{
 
-    // Option B: Use your PUBLIC Google Calendar ICS link here (may hit CORS in some setups)
-    // const ICS_URL = "PASTE_YOUR_PUBLIC_ICS_URL_HERE";
+const calendar = new FullCalendar.Calendar(
+document.getElementById("calendar"),
+{
+plugins:[FullCalendar.DayGrid,FullCalendar.Interaction],
+initialView:"dayGridMonth",
+firstDay:1,
+height:"auto",
+headerToolbar:{
+left:"prev,next today",
+center:"title",
+right:"dayGridMonth,dayGridWeek"
+},
+eventClick:function(info){
 
-    // If you use Option B and CORS blocks it, set a proxy prefix:
-    // Example proxy (may have limits): https://cors.isomorphic-git.org/
-    const CORS_PROXY = ""; // e.g. "https://cors.isomorphic-git.org/"
-    const ICS_URL = "https://calendar.google.com/calendar/ical/beken%40sakarya.edu.tr/public/basic.ics"; // <-- change this if you want Option B
+// EMAIL GÖSTERİLMİYOR
+const ev = info.event;
 
-    // ====== POPUP ======
-    function showPopup(title, metaHtml) {
-      const popup = document.getElementById("popup");
-      document.getElementById("pTitle").textContent = title || "(No title)";
-      document.getElementById("pMeta").innerHTML = metaHtml || "";
-      popup.style.display = "block";
-    }
-    function hidePopup() {
-      document.getElementById("popup").style.display = "none";
-    }
-    document.getElementById("popupClose").addEventListener("click", hidePopup);
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") hidePopup(); });
+const start = ev.start ? ev.start.toLocaleString() : "";
+const end = ev.end ? ev.end.toLocaleString() : "";
+const loc = ev.extendedProps.location ?
+`<br><b>Location:</b> ${ev.extendedProps.location}` : "";
 
-    // ====== ICS → Events ======
-    async function fetchIcsText(url) {
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error("ICS fetch failed: " + res.status);
-      return await res.text();
-    }
+showPopup(
+ev.title,
+`<b>Start:</b> ${start}${end ? `<br><b>End:</b> ${end}` : ""}${loc}`
+);
 
-    function icsToEvents(icsText) {
-      const jcalData = ICAL.parse(icsText);
-      const comp = new ICAL.Component(jcalData);
-      const vevents = comp.getAllSubcomponents("vevent");
+info.jsEvent.preventDefault();
+}
+}
+);
 
-      return vevents.map(v => {
-        const e = new ICAL.Event(v);
+calendar.render();
 
-        // We intentionally only expose safe fields
-        const title = e.summary || "";
-        const start = e.startDate ? e.startDate.toJSDate() : null;
-        const end = e.endDate ? e.endDate.toJSDate() : null;
-        const location = e.location || "";
+try{
+calendar.addEventSource(await fetchEvents());
+}catch(e){
+console.error(e);
+alert("Calendar load error (ICS link or CORS).");
+}
 
-        // You can also drop location if you want:
-        return {
-          title,
-          start,
-          end,
-          extendedProps: { location }
-        };
-      }).filter(ev => ev.start);
-    }
+});
+</script>
 
-    // ====== Init ======
-    document.addEventListener("DOMContentLoaded", async function () {
-      // year in footer
-      document.getElementById('y').textContent = new Date().getFullYear();
-
-      const calendarEl = document.getElementById("calendar");
-
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [FullCalendar.DayGrid, FullCalendar.Interaction],
-        initialView: "dayGridMonth",
-        firstDay: 1, // Monday
-        height: "auto",
-        headerToolbar: {
-          left: "prev,next today",
-          center: "title",
-          right: "dayGridMonth,dayGridWeek"
-        },
-        eventClick: function(info) {
-          // We NEVER print guests/attendees/emails (not even if present in ICS)
-          const ev = info.event;
-
-          const start = ev.start ? ev.start.toLocaleString() : "";
-          const end = ev.end ? ev.end.toLocaleString() : "";
-          const loc = ev.extendedProps.location ? `<br><b>Location:</b> ${escapeHtml(ev.extendedProps.location)}` : "";
-
-          const meta =
-            `<b>Start:</b> ${escapeHtml(start)}` +
-            (end ? `<br><b>End:</b> ${escapeHtml(end)}` : "") +
-            loc;
-
-          showPopup(ev.title, meta);
-          info.jsEvent.preventDefault();
-        }
-      });
-
-      calendar.render();
-
-      try {
-        const url = (CORS_PROXY ? (CORS_PROXY + ICS_URL) : ICS_URL);
-        const icsText = await fetchIcsText(url);
-        const events = icsToEvents(icsText);
-        calendar.addEventSource(events);
-      } catch (err) {
-        console.error(err);
-        showPopup("Calendar error", "ICS okunamadı. (Public link/CORS ya da dosya yolu problemi olabilir.)");
-      }
-    });
-
-    // helper: avoid HTML injection in popup
-    function escapeHtml(str) {
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-  </script>
 </body>
 </html>
