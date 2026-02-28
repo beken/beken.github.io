@@ -73,6 +73,12 @@
       .twocol{grid-template-columns:1fr}
     }
   </style>
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.8/index.global.min.js"></script>
+
+  
 </head>
 <body>
   <!-- NAV -->
@@ -240,10 +246,6 @@
     <p class="footer"><span id="y"></span> </p>
   </main>
   
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.8/index.global.min.js"></script>
-
 <section id="schedule" class="section container">
     <h2>Weekly Schedule & Appointments</h2>
     <div class="card" style="padding: 10px; overflow-x: auto;">
@@ -255,20 +257,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        googleCalendarApiKey: 'AIzaSyAB-C1EyAiDXwjDr2NshnLO2xW5q9dXHHw', 
-        events: 'beken@sakarya.edu.tr',
-        
-        initialView: 'timeGridWeek', 
-        locale: 'en', 
-        allDaySlot: false,
-        slotMinTime: '08:00:00',
-        slotMaxTime: '19:00:00',
-        height: 'auto',
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'timeGridWeek,dayGridMonth'
-        },
+    googleCalendarApiKey: 'AIzaSyAB-C1EyAiDXwjDr2NshnLO2xW5q9dXHHw',
+    events: {
+        googleCalendarId: 'beken@sakarya.edu.tr'
+    },
+    initialView: 'timeGridWeek',
+    timeZone: 'local', // Senin bilgisayarının saatine göre ayarlar
+    // Takvim boş görünüyorsa, etkinliklerin geçmişte veya çok gelecekte kalmadığından emin olun
+    nowIndicator: true, 
+    // ... diğer ayarların ...
+});
 
         // --- GİZLİLİK VE TASARIM FİLTRESİ ---
         eventDataTransform: function(eventData) {
