@@ -226,21 +226,6 @@
     </div>
   </section>
 
-<section id="office-hours" class="section">
-  <h2>Office Hours</h2>
-
-  <div class="card" style="padding:10px;">
-    <iframe
-      src="https://calendar.google.com/calendar/embed?src=beken%40sakarya.edu.tr&ctz=Europe%2FIstanbul&mode=WEEK&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0"
-      style="border:0;width:100%;height:700px;border-radius:12px;"
-      frameborder="0"
-      scrolling="no"
-      loading="lazy">
-    </iframe>
-  </div>
-</section>
-    
-
     <!-- CONTACT -->
     <!--
     <section id="contact" class="section">
@@ -255,10 +240,69 @@
     <p class="footer"><span id="y"></span> </p>
   </main>
   
-  <!--
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-  -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.8/index.global.min.js"></script>
+
+<section id="schedule" class="section container">
+    <h2>Weekly Schedule & Appointments</h2>
+    <div class="card" style="padding: 10px; overflow-x: auto;">
+        <div id="calendar"></div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        googleCalendarApiKey: 'AIzaSyAB-C1EyAiDXwjDr2NshnLO2xW5q9dXHHw', 
+        events: 'beken@sakarya.edu.tr',
+        
+        initialView: 'timeGridWeek', 
+        locale: 'en', 
+        allDaySlot: false,
+        slotMinTime: '08:00:00',
+        slotMaxTime: '19:00:00',
+        height: 'auto',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'timeGridWeek,dayGridMonth'
+        },
+
+        // --- GİZLİLİK VE TASARIM FİLTRESİ ---
+        eventDataTransform: function(eventData) {
+            return {
+                title: eventData.title, 
+                start: eventData.start,
+                end: eventData.end,
+                backgroundColor: eventData.title.toLowerCase().includes('ders') ? 'var(--brand)' : 'var(--accent)',
+                borderColor: 'transparent',
+                extendedProps: {
+                    attendees: [] 
+                },
+                description: "" 
+            };
+        }
+    });
+    calendar.render();
+});
+</script>
+
+<style>
+    /* Takvimi sitenin karanlık/aydınlık temasına uydurmak için CSS */
+    :root {
+        --fc-border-color: color-mix(in oklab, var(--text) 10%, transparent);
+        --fc-button-bg-color: var(--card);
+        --fc-button-border-color: var(--brand);
+        --fc-button-text-color: var(--text);
+        --fc-today-bg-color: color-mix(in oklab, var(--brand) 10%, transparent);
+    }
+    .fc { color: var(--text); font-family: inherit; }
+    .fc-col-header-cell { background: var(--card); padding: 8px 0; }
+    .fc-timegrid-slot { height: 3em !important; }
+    .fc-event { border-radius: 8px; padding: 2px 4px; font-size: 0.85em; cursor: default; }
+    .fc-v-event .fc-event-main { color: #fff; }
+</style>
 </body>
 </html>
