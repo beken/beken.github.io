@@ -257,18 +257,24 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
-    googleCalendarApiKey: 'AIzaSyAB-C1EyAiDXwjDr2NshnLO2xW5q9dXHHw',
-    events: {
-        googleCalendarId: 'beken@sakarya.edu.tr'
-    },
-    initialView: 'timeGridWeek',
-    timeZone: 'local', // Senin bilgisayarının saatine göre ayarlar
-    // Takvim boş görünüyorsa, etkinliklerin geçmişte veya çok gelecekte kalmadığından emin olun
-    nowIndicator: true, 
-    // ... diğer ayarların ...
-});
-
-        // --- GİZLİLİK VE TASARIM FİLTRESİ ---
+        googleCalendarApiKey: 'AIzaSyAB-C1EyAiDXwjDr2NshnLO2xW5q9dXHHw',
+        events: {
+            googleCalendarId: 'beken@sakarya.edu.tr'
+        },
+        initialView: 'timeGridWeek',
+        timeZone: 'local',
+        nowIndicator: true,
+        allDaySlot: false,
+        slotMinTime: '08:00:00',
+        slotMaxTime: '19:00:00',
+        height: 'auto',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'timeGridWeek,dayGridMonth'
+        },
+        
+        // --- GİZLİLİK VE TASARIM FİLTRESİ (Düzeltildi) ---
         eventDataTransform: function(eventData) {
             return {
                 title: eventData.title, 
